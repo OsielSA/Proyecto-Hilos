@@ -1,7 +1,5 @@
 package terrenoAgricola;
 
-import terrenoAgricolaE.Rutinas;
-
 public class Hermano extends Thread{
 	private Hectarea hectareas[];
 	public int id;

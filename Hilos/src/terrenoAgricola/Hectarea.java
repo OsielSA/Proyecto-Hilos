@@ -5,9 +5,6 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-import terrenoAgricolaE.Semaforo;
-
-
 public class Hectarea extends JLabel{
 	private final Color malaC = new Color(237, 96, 0);
 	private final Color buenaC = new Color(159, 87, 37);
