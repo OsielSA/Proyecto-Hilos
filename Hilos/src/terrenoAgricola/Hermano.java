@@ -13,7 +13,6 @@ public class Hermano extends Thread{
 	public void run() {
 		int noHectarea;
 		while(hectareasLibres()) {
-			System.out.println("trabajando "+id);
 			noHectarea = Rutinas.nextInt(0,99);
 			hectareas[noHectarea].getSemaforo().Espera();
 			

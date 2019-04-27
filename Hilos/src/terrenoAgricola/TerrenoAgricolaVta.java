@@ -21,7 +21,7 @@ public class TerrenoAgricolaVta extends JFrame {
 	}
 	private void hazInterfaz() {
 		setLayout(null);
-		setSize(800, 600);
+		setSize(900, 700);
 		setExtendedState(MAXIMIZED_BOTH);
 		getContentPane().setBackground(new Color(109, 109, 109));
 		
