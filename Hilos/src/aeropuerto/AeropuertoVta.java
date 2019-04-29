@@ -26,7 +26,6 @@ public class AeropuertoVta extends JFrame{
 //		---------------------------------
 		colocarFondo();
 		creaAviones();
-//		add(glass);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
