@@ -12,7 +12,7 @@ public class TerrenoAgricolaVta extends JFrame {
 	public Hectarea hectareas[];
 	
 	public JButton btnRepartir;
-	public JRadioButton rdBtnHer1, rdBtnHer2, rdBtnHer3;
+	public JRadioButton rdBtnHer1, rdBtnHer2, rdBtnHer3, rdBtnTodos;
     private ButtonGroup grupo;
 	
 	public TerrenoAgricolaVta() {
@@ -47,25 +47,30 @@ public class TerrenoAgricolaVta extends JFrame {
 		separador.setBackground(new Color(90, 89, 88));
 		panelMenu.add(separador);
 		//añade botón
-		btnRepartir.setBounds(90, 80, 90, 35);
+		btnRepartir.setBounds(90, 70, 90, 35);
 		panelMenu.add(btnRepartir);
 		//añadir radios
 		rdBtnHer1 = new JRadioButton("Hermano 1");
 		rdBtnHer2 = new JRadioButton("Hermano 2");
 		rdBtnHer3 = new JRadioButton("Hermano 3");
+		rdBtnTodos = new JRadioButton("Todos");
 		grupo = new ButtonGroup();
 		grupo.add(rdBtnHer1);
 		grupo.add(rdBtnHer2);
 		grupo.add(rdBtnHer3);
-		rdBtnHer1.setBounds(90, 130, 100, 20);
-		rdBtnHer2.setBounds(90, 150, 100, 20);
-		rdBtnHer3.setBounds(90, 170, 100, 20);
+		grupo.add(rdBtnTodos);
+		rdBtnHer1.setBounds(90, 120, 100, 20);
+		rdBtnHer2.setBounds(90, 140, 100, 20);
+		rdBtnHer3.setBounds(90, 160, 100, 20);
+		rdBtnTodos.setBounds(90, 180, 100, 20);
 		panelMenu.add(rdBtnHer1);
 		panelMenu.add(rdBtnHer2);
 		panelMenu.add(rdBtnHer3);
+		panelMenu.add(rdBtnTodos,true);
 		rdBtnHer1.setEnabled(false);
 		rdBtnHer2.setEnabled(false);
 		rdBtnHer3.setEnabled(false);
+		rdBtnTodos.setEnabled(false);
 		añadeInfo();
 		
 		panelMenu.setBounds(1080,100,260,450);
@@ -82,13 +87,13 @@ public class TerrenoAgricolaVta extends JFrame {
 		Hectarea tierraExelente = new Hectarea(3);
 		
 		//Añade titulo
-		separador.setBounds(0, 210, 300, 1);
+		separador.setBounds(0, 220, 300, 1);
 		separador.setOpaque(true);
 		separador.setBackground(Color.BLACK);
 		panelMenu.add(separador);
-		lblInfo.setBounds(100, 225, 80, 20);
+		lblInfo.setBounds(100, 235, 80, 20);
 		panelMenu.add(lblInfo);
-		separador2.setBounds(10, 255, 235, 1);
+		separador2.setBounds(10, 265, 235, 1);
 		separador2.setOpaque(true);
 		separador2.setBackground(new Color(90, 89, 88));
 		panelMenu.add(separador2);
@@ -125,6 +130,11 @@ public class TerrenoAgricolaVta extends JFrame {
 		add(panelTerreno);
 	}
 	public void mostraHectareas(int hermano) {
+		if(hermano==0) {
+			for(int i=0;i<hectareas.length;i++) 
+				hectareas[i].setVisible(true);
+			return;
+		}
 		for(int i=0;i<hectareas.length;i++) {
 			if(hectareas[i].getHermano() != hermano) {
 				hectareas[i].setVisible(false);

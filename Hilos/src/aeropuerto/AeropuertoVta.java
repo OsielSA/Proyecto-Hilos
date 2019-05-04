@@ -19,6 +19,7 @@ public class AeropuertoVta extends JFrame{
 	private void createInterface() {
 		setSize(900, 600);
 		setResizable(false);
+		setLocationRelativeTo(null);;
 //		---------------------------------
 		glass = (JPanel) getGlassPane();
         glass.setLayout(null);

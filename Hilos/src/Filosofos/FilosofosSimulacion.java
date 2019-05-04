@@ -18,8 +18,9 @@ public class FilosofosSimulacion extends JFrame {
 
 	private void hazInterfaz() {
 		setLayout(null);
-		setSize(850, 700);
+		setSize(800, 700);
 		setResizable(false);
+		setLocationRelativeTo(null);;
 //		---------------------------------
 		glass = (JPanel) getGlassPane();
         glass.setLayout(null);
@@ -89,7 +90,4 @@ public class FilosofosSimulacion extends JFrame {
 	}
 	
 	
-	public Tenedor[] getTenedores() {
-		return tenedores;
-	}
 }

@@ -16,6 +16,7 @@ public class TerrenoAgricolaCtd implements ActionListener{
 		vista.rdBtnHer1.addActionListener(this);
 		vista.rdBtnHer2.addActionListener(this);
 		vista.rdBtnHer3.addActionListener(this);
+		vista.rdBtnTodos.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent evt) {
@@ -31,11 +32,17 @@ public class TerrenoAgricolaCtd implements ActionListener{
 			vista.mostraHectareas(3);
 			return;
 		} 
+		if(evt.getSource() == vista.rdBtnTodos) {
+			vista.mostraHectareas(0);
+			return;
+		} 
 		if(evt.getSource() == vista.btnRepartir) {
 			modelo.Repartir(vista.hectareas);
 			vista.rdBtnHer1.setEnabled(true);
 			vista.rdBtnHer2.setEnabled(true);
 			vista.rdBtnHer3.setEnabled(true);
+			vista.rdBtnTodos.setEnabled(true);
+//			vista.rdBtnTodos.set
 			return;
 		} 
 			
