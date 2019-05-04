@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 
 public class plantaEnsambladoraVta extends JFrame{
@@ -12,7 +13,7 @@ public class plantaEnsambladoraVta extends JFrame{
 	public JSlider sliderLineas;
 	public JButton btnIniciar;
 	private int numLineas;
-	
+	private Linea[] lineas;
 	public plantaEnsambladoraVta() {
 		super("Producció");
 		createInterfaceMenu();
@@ -52,7 +53,7 @@ public class plantaEnsambladoraVta extends JFrame{
 		frameMenu.setVisible(true);
 	}
 	private void createInterfaceProduccion() {
-		setLayout(null);
+		setLayout(new GridLayout(0, 2, 1, 1));
 		setSize(900, 700);
 		setExtendedState(MAXIMIZED_BOTH);
 		Image icon = new ImageIcon(ruta+"logo.png").getImage();
@@ -60,7 +61,15 @@ public class plantaEnsambladoraVta extends JFrame{
 		
 		frameMenu.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
+	private void añadirLineas() {
+		lineas = new Linea[numLineas];
+		for(int i=0;i<lineas.length;i++)
+			lineas[i]= new Linea();
+		for(int i=0;i<lineas.length;i++)
+			add(lineas[i]);
+	}
 	public void iniciarProduccion() {
+		añadirLineas();
 		setVisible(true);
 	}
 	public void ocultarMenu() {
