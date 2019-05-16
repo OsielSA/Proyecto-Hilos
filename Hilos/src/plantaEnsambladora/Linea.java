@@ -50,13 +50,6 @@ public class Linea extends Thread {
 			ejeX+=110;
 		}
 	}
-//	@Override
-    public void paint(Graphics g) {
-    	g.drawImage(imagen, 0, 0, pnlLinea.getWidth(), pnlLinea.getHeight(),pnlLinea);
- 
-        pnlLinea.setOpaque(false);
-        pnlLinea.paint(g);
-    }
 	@Override
 	public void run() {
 		avanzaAuto();

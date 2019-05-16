@@ -20,7 +20,7 @@ public class FilosofosSimulacion extends JFrame {
 		setLayout(null);
 		setSize(800, 700);
 		setResizable(false);
-		setLocationRelativeTo(null);;
+		setLocationRelativeTo(null);
 //		---------------------------------
 		glass = (JPanel) getGlassPane();
         glass.setLayout(null);
