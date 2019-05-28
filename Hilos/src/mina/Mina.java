@@ -5,8 +5,17 @@ import java.util.Vector;
 public class Mina {
 	public int[] mineralesEuropa;
 	public int[] mineralesAsia;
+	public Semaforo semaforoEuropa;
+	public Semaforo semaforoAsia;
+	private boolean minandoEu;
+	private boolean minandoAs;
+	
 	public Mina() {
 		cargarMinerales();
+		semaforoEuropa = new Semaforo(1);
+		semaforoAsia = new Semaforo(1);
+		minandoEu = false;
+		minandoAs = false;
 	}
 	private void cargarMinerales() {
 		mineralesEuropa = new int[3];
@@ -24,18 +33,49 @@ public class Mina {
 		mineralesAsia[0] = (int) mineralesTipo1/2;
 		mineralesAsia[1] = (int) mineralesTipo2/2;
 		mineralesAsia[2] = (int) mineralesTipo3/2;
-		System.out.println(mineralesTipo1);
-		System.out.println(mineralesTipo2);
-		System.out.println(mineralesTipo3);
-		System.out.println("------------------------------");
-		for(int i=0;i<mineralesEuropa.length;i++) {
-			System.out.println(mineralesEuropa[i]);
-		}
-		System.out.println("------------------------------");
-		for(int i=0;i<mineralesEuropa.length;i++) {
-			System.out.println(mineralesAsia[i]);
-		}
 		
+	}
+	public int solicitarMinerales(int continente,int tipo, int cantidad) {
+		int minerales = 0;
+		if(continente == 1) {
+			for(int i=0;i<cantidad;i++) {
+				if(mineralesEuropa[tipo-1]<=0)
+					return minerales;
+				mineralesEuropa[tipo-1]--;
+				minerales++;
+			}
+			return minerales;
+		}
+		for(int i=0;i<cantidad;i++) {
+			if(mineralesAsia[tipo-1]<=0)
+				return minerales;
+			mineralesAsia[tipo-1]--;
+			minerales++;
+		}
+		return minerales;
+	}
+	public boolean hayDisponibles(int continente) {
+		if(continente == 1) {
+			if(mineralesEuropa[0]>0 || mineralesEuropa[1]>0 || mineralesEuropa[2]>0)
+				return true;
+			return false;
+		}
+		if(mineralesAsia[0]>0 || mineralesAsia[1]>0 || mineralesAsia[2]>0)
+			return true;
+		return false;
+	}
+	
+	public boolean isMinandoAs() {
+		return minandoAs;
+	}
+	public boolean isMinandoEu() {
+		return minandoEu;
+	}
+	public void setMinandoAs(boolean minandoAs) {
+		this.minandoAs = minandoAs;
+	}
+	public void setMinandoEu(boolean minandoEu) {
+		this.minandoEu = minandoEu;
 	}
 	
 }

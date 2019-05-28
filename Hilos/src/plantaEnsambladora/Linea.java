@@ -1,8 +1,9 @@
 package plantaEnsambladora;
 
-import java.awt.Color;
+import java.awt.Color; 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.Vector;
 
 import javax.swing.*;
 
@@ -10,14 +11,19 @@ import com.sun.javafx.geom.Rectangle;
 
 public class Linea extends Thread {
 	private final String ruta = ".\\src\\plantaEnsambladora\\images\\"; 
+	private final int[] posEstaciones = {40, 150, 260, 370, 480, 590, 700};
 	private JPanel pnlLinea;
 	private Estacion[] estaciones;
 	private JLabel imgLinea;
 	private JLabel auto;
 	private Image imagen;
-	public Linea() {
+	private Vector<Robot[]> robots;
+	private static Integer contAutos = 0;
+	public Linea(Vector<Robot[]> robots, Integer contAutos) {
+		this.robots = robots;
+//		this.contAutos = contAutos;
 		crearLinea();
-		
+				
 	}
 	private void crearLinea() {
 		pnlLinea = new JPanel();
@@ -27,7 +33,7 @@ public class Linea extends Thread {
 		//colocar auto
 		auto = new JLabel();
 		auto.setIcon(Rutinas.changeSize(ruta+"car1.png", 50, 40));
-		auto.setBounds(10, 50, 50, 40);
+		auto.setBounds(-10, 50, 50, 40);
 		pnlLinea.add(auto);
 		
 		
@@ -38,10 +44,8 @@ public class Linea extends Thread {
 	}
 	private void colocaEstaciones() {
 		estaciones = new Estacion[6];
-		int pos = 40;
 		for(int i=0;i<estaciones.length;i++) {
-			estaciones[i] = new Estacion(i,500,pos);
-			pos += 40;
+			estaciones[i] = new Estacion(i,500);
 		}
 		int ejeX = 35;
 		for(int i=0;i<estaciones.length;i++) {
@@ -52,21 +56,65 @@ public class Linea extends Thread {
 	}
 	@Override
 	public void run() {
-		avanzaAuto();
-	}
-	private void avanzaAuto() {
-		
+		Robot[] robotsAux;
+		Robot robotAux;
 		while(true) {
-			if(auto.getX() == 1000)
-				return;
+//			if(contAutos >= 15)
+//				return;
+			auto.setBounds(-10, 50, 50, 40);
+			System.out.println(contAutos);
+			for(int i=0;i<posEstaciones.length;i++) {
+				if(contAutos > 15)
+					return;
+				//llegó a posicion final
+				if(i == posEstaciones.length-1) {
+					avanzaAuto(posEstaciones[i]);
+					auto.setIcon(Rutinas.changeSize(ruta+"car1.png", 50, 40));
+					break;
+				}
+				
+				robotsAux = robots.get(i);
+				avanzaAuto(posEstaciones[i]);
+				
+				
+				robotAux = robotDisponible(robotsAux);
+				if(robotAux == null) {
+					i--;
+					continue;
+				}
+				robotAux.setTrabajando(true);
+				robotAux.semaforo.Espera();
+				estaciones[i].setIcon(robotAux.getImgRobot());
+				try {
+					sleep(estaciones[i].getTiempo());
+				}catch(Exception e) {}
+				auto.setIcon(Rutinas.changeSize(ruta+"car"+(i+1)+".png", 50, 40));
+				estaciones[i].setIcon(null);
+				robotAux.setTrabajando(false);
+				robotAux.semaforo.Libera();
+			}
+			contAutos++;
+			
+		}
+		
+	}
+	private Robot robotDisponible(Robot robots[]) {
+		for(int i=0;i<robots.length;i++) {
+			if(!robots[i].isTrabajando())
+				return robots[i];
+		}
+		return null;
+	}
+	private void avanzaAuto(int limite) {
+		while(auto.getX() <= limite) {
 			auto.setBounds(auto.getX()+1, 50, 60, 50);
 			try {
 				sleep(10);
 			}catch(Exception e) {}
-			SwingUtilities.updateComponentTreeUI(pnlLinea);
 		}
 
 	}
+
 	public JPanel getPnlLinea() {
 		return pnlLinea;
 	}

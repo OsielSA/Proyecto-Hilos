@@ -13,12 +13,17 @@ public class MinaVta extends JFrame{
 	private JLabel lblInfoRegularAs;
 	private JLabel lblInfoBuenaAs;
 	private JLabel lblInfoExelenteAs;
+	public JLabel lblSolicitudEu;
+	public JLabel lblSolicitudAs;
 	
 	
-	private JLabel lblPaisEuropa;
-	private JLabel lblPaisAsia;
+	public JLabel lblPaisEuropa;
+	public JLabel lblPaisAsia;
 	
 	private Mina mina;
+	
+	private Pais[] paisesEuropa;
+	private Pais[] paisesAsia;
 	
 	public MinaVta() {
 		super("Mina");
@@ -36,8 +41,9 @@ public class MinaVta extends JFrame{
 		
 		cargarInfoMina();
 		cargarPaises();
-		
+		iniciar();
 //		----------------------------
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
 	}
@@ -82,10 +88,55 @@ public class MinaVta extends JFrame{
 		lblPaisEuropa.setIcon(Rutinas.changeSize(ruta+"europaP0.png", 200, 150));
 		lblPaisEuropa.setBounds(600, 30, 200, 150);
 		add(lblPaisEuropa);
+		lblSolicitudEu = new JLabel();
+		lblSolicitudEu.setForeground(new Color(101, 101, 101)); 
+		lblSolicitudEu.setBounds(700, 180, 100, 50);
+		add(lblSolicitudEu);
+		
 		lblPaisAsia = new JLabel();
 		lblPaisAsia.setIcon(Rutinas.changeSize(ruta+"asiaP0.png", 300, 200));
 		lblPaisAsia.setBounds(600, 250, 300, 200);
 		add(lblPaisAsia);
+		lblSolicitudAs = new JLabel();
+		lblSolicitudAs.setForeground(new Color(101, 101, 101)); 
+		lblSolicitudAs.setBounds(700, 450, 100, 50);
+		add(lblSolicitudAs);
 		
+		//Inicializar Paises
+		paisesEuropa = new Pais[Rutinas.nextInt(10, 30)];
+		paisesAsia = new Pais[Rutinas.nextInt(5, 7)];
+		for(int i=0;i<paisesEuropa.length;i++)
+			paisesEuropa[i] = new Pais(1,(i+1),this);
+		for(int i=0;i<paisesAsia.length;i++)
+			paisesAsia[i] = new Pais(2,(i+1),this);
+	}
+	
+	private void iniciar() {
+		for(int i=0;i<paisesEuropa.length;i++)
+			paisesEuropa[i].start();
+		for(int i=0;i<paisesAsia.length;i++)
+			paisesAsia[i].start();
+	}
+
+	public void actualizar(int continente) {
+		if(continente == 1) {
+			//info Regular
+			lblInfoRegularEu.setText("Cantidad Europa: "+mina.mineralesEuropa[0]);
+			//info Buena
+			lblInfoBuenaEu.setText("Cantidad Europa: "+mina.mineralesEuropa[1]);
+			//info Exelente
+			lblInfoExelenteEu.setText("Cantidad Europa: "+mina.mineralesEuropa[2]);
+			return;
+		}
+		//info Regular
+		lblInfoRegularAs.setText("Cantidad Asia: "+mina.mineralesAsia[0]);
+		//info Buena
+		lblInfoBuenaAs.setText("Cantidad Asia: "+mina.mineralesAsia[1]);
+		//info Exelente
+		lblInfoExelenteAs.setText("Cantidad Asia: "+mina.mineralesAsia[2]);
+	}
+	
+	public Mina getMina() {
+		return mina;
 	}
 }

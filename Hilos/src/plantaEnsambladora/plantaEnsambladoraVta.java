@@ -2,11 +2,8 @@ package plantaEnsambladora;
 
 import javax.swing.*;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Image;
+import java.awt.*;
+import java.util.Vector;
 
 public class plantaEnsambladoraVta extends JFrame{
 	private final String ruta = ".\\src\\plantaEnsambladora\\images\\"; 
@@ -14,9 +11,15 @@ public class plantaEnsambladoraVta extends JFrame{
 	public JSlider sliderLineas;
 	public JButton btnIniciar;
 	private int numLineas;
+	private Vector<Robot[]> robotPorEstaciones; 
 	private Linea[] lineas;
+	
+	Semaforo semaforo;
+	private Integer contAutos;
+	
 	public plantaEnsambladoraVta() {
 		super("Producció");
+		contAutos = 0;
 		createInterfaceMenu();
 		createInterfaceProduccion();
 	}
@@ -67,23 +70,39 @@ public class plantaEnsambladoraVta extends JFrame{
 		setIconImage(icon);
 		
 		getContentPane().setBackground(Color.BLACK);
-		frameMenu.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	private void añadirLineas() {
 		lineas = new Linea[numLineas];
 	
-		
 		for(int i=0;i<lineas.length;i++)
-			lineas[i]= new Linea();
+			lineas[i]= new Linea(robotPorEstaciones, contAutos);
 		for(int i=0;i<lineas.length;i++)
 			add(lineas[i].getPnlLinea());
-		
 	}
 	public void iniciarProduccion() {
+		añadirRobots();
 		añadirLineas();
 		setVisible(true);
 		for(int i=0;i<lineas.length;i++)
 			lineas[i].start();
+	}
+	private void añadirRobots() {
+		robotPorEstaciones = new Vector<Robot[]>();
+		int numRobots[] = {5, 4, 3, 3, numLineas, numLineas};
+		
+		for(int i=0;i<numRobots.length;i++) {
+			Robot robots[] = new Robot[numRobots[i]];
+			for(int j=0;j<numRobots[i];j++) {
+				robots[j] = new Robot();
+			}
+			robotPorEstaciones.add(robots);
+		}
+		for(int i=0;i<robotPorEstaciones.size();i++) {
+			System.out.println("Robots estacion "+(i+1)+": "+robotPorEstaciones.get(i).length);
+		}
+		
+
 	}
 	public void ocultarMenu() {
 		frameMenu.setVisible(false);
