@@ -1,5 +1,7 @@
 package mina;
 
+import java.util.Vector;
+
 import javax.swing.ImageIcon;
 
 
@@ -12,12 +14,14 @@ public class Pais extends Thread{
 	private ImageIcon paisDefault;
 	private MinaVta v;
 	public int[] minerales;
+	private Vector<String> info;
 	
 	public Pais(int continente, int id, MinaVta vista) {
 		this.continente = continente;
 		this.id = id;
 		this.v = vista;
 		minerales = new int[3];
+		info = new Vector<String>();
 		asignaIcono();
 		
 	}
@@ -32,8 +36,10 @@ public class Pais extends Thread{
 //			cantidad = Rutinas.nextInt(1, 3);
 			cantidad = Rutinas.nextInt(100, 200);
 			if(continente == 1) {
-				if(!mina.hayDisponibles(continente))
+				if(!mina.hayDisponibles(continente)) {
+					v.btnConsulta.setEnabled(true);
 					return;
+				}
 				if(mina.isMinandoEu())
 					continue;
 				
@@ -85,5 +91,15 @@ public class Pais extends Thread{
 		}
 		paisImagen = Rutinas.changeSize(ruta+"asiaP"+id+".png", 300, 200);
 		paisDefault = Rutinas.changeSize(ruta+"asiaP"+0+".png", 300, 200);
+	}
+	public Vector<String> getVectorInfo() {
+		if(continente == 1)
+			info.add("Europa" + id);
+		if(continente == 2)
+			info.add("Asia" + id);
+		info.add(""+minerales[0]);
+		info.add(""+minerales[1]);
+		info.add(""+minerales[2]);
+		return info;
 	}
 }

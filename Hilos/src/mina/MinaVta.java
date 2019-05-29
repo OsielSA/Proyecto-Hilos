@@ -1,12 +1,15 @@
 package mina;
 
 import java.awt.Color;
+import java.util.Vector;
 
 import javax.swing.*;
 
 public class MinaVta extends JFrame{
 	private final String ruta = ".\\src\\mina\\images\\"; 
 	
+	public JFrame frameConsulta;
+	private JTable tableInfoPaises;
 	private JLabel lblInfoRegularEu;
 	private JLabel lblInfoBuenaEu;
 	private JLabel lblInfoExelenteEu;
@@ -20,6 +23,8 @@ public class MinaVta extends JFrame{
 	public JLabel lblPaisEuropa;
 	public JLabel lblPaisAsia;
 	
+	public JButton btnConsulta;
+	
 	private Mina mina;
 	
 	private Pais[] paisesEuropa;
@@ -29,6 +34,7 @@ public class MinaVta extends JFrame{
 		super("Mina");
 		mina = new Mina();
 		createInterface();
+		createInterfaceConsulta();
 	}
 
 	private void createInterface() {
@@ -46,6 +52,27 @@ public class MinaVta extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
+	}
+	private void createInterfaceConsulta() {
+		frameConsulta = new JFrame("Información");
+		frameConsulta.setSize(400, 500);
+		frameConsulta.setResizable(false);
+		frameConsulta.setLocationRelativeTo(null);
+		
+		
+		
+	}
+	public void crearTabla(Vector<Vector<String>> infoPaises) {
+		//Titulos
+		Vector<String> titulos = new Vector<String>();
+		titulos.add("País");
+		titulos.add("Regular");
+		titulos.add("Buena");
+		titulos.add("Exelente");
+		infoPaises.add(titulos);
+		tableInfoPaises = new JTable(infoPaises, titulos);
+		
+		frameConsulta.add(new JScrollPane(tableInfoPaises));
 	}
 
 	private void cargarInfoMina() {
@@ -81,6 +108,12 @@ public class MinaVta extends JFrame{
 		infoMina.setIcon(Rutinas.changeSize(ruta+"infoMina.png", 500, 350));
 		infoMina.setBounds(10, 80, 500, 350);
 		add(infoMina);
+
+		//Boton Consulta
+		btnConsulta = new JButton("Consulta");
+		btnConsulta.setBounds(780, 530, 90, 20);
+		btnConsulta.setEnabled(false);
+		add(btnConsulta);
 	}
 	
 	private void cargarPaises() {
@@ -138,5 +171,11 @@ public class MinaVta extends JFrame{
 	
 	public Mina getMina() {
 		return mina;
+	}
+	public Pais[] getPaisesEuropa() {
+		return paisesEuropa;
+	}
+	public Pais[] getPaisesAsia() {
+		return paisesAsia;
 	}
 }
