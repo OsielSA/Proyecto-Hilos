@@ -14,12 +14,9 @@ public class plantaEnsambladoraVta extends JFrame{
 	private Vector<Robot[]> robotPorEstaciones; 
 	private Linea[] lineas;
 	
-	Semaforo semaforo;
-	private Integer contAutos;
 	
 	public plantaEnsambladoraVta() {
 		super("Producció");
-		contAutos = 0;
 		createInterfaceMenu();
 		createInterfaceProduccion();
 	}
@@ -76,7 +73,7 @@ public class plantaEnsambladoraVta extends JFrame{
 		lineas = new Linea[numLineas];
 	
 		for(int i=0;i<lineas.length;i++)
-			lineas[i]= new Linea(robotPorEstaciones, contAutos);
+			lineas[i]= new Linea(robotPorEstaciones);
 		for(int i=0;i<lineas.length;i++)
 			add(lineas[i].getPnlLinea());
 	}

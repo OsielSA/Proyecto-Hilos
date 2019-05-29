@@ -18,10 +18,11 @@ public class Linea extends Thread {
 	private JLabel auto;
 	private Image imagen;
 	private Vector<Robot[]> robots;
-	private static Integer contAutos = 0;
+	private static int contAutos = 0;
 	private boolean contAutosOcupado;
 	private Semaforo semaforo;
-	public Linea(Vector<Robot[]> robots, Integer contAutos) {
+	
+	public Linea(Vector<Robot[]> robots) {
 		this.robots = robots;
 		contAutosOcupado = false;
 		semaforo = new Semaforo(1);
@@ -71,6 +72,7 @@ public class Linea extends Thread {
 			for(int i=0;i<posEstaciones.length;i++) {
 				if(contAutos > 15)
 					return;
+				
 				//llegó a estación final
 				if(i == posEstaciones.length-1) {
 					avanzaAuto(posEstaciones[i]);
