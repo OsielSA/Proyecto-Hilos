@@ -14,10 +14,10 @@ public class TerrenoAgricolaMdl {
         hermano1.start();
         hermano2.start();
         hermano3.start();
-        
+
 //        while (hermano1.isAlive() || hermano2.isAlive() || hermano3.isAlive());
     }
-    
+
     public Hermano getHermano(int numeroHermano) {
         switch (numeroHermano) {
             case 1:

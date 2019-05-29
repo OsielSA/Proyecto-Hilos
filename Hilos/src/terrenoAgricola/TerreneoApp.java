@@ -12,7 +12,7 @@ public class TerreneoApp {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        
+
         TerrenoAgricolaVta v = new TerrenoAgricolaVta();
         TerrenoAgricolaMdl m = new TerrenoAgricolaMdl();
         TerrenoAgricolaCtd c = new TerrenoAgricolaCtd(v, m);

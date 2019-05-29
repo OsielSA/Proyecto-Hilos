@@ -38,7 +38,7 @@ public class Hermano extends Thread {
         }
         return false;
     }
-    
+
     public int getContadorHectareas() {
         return contadorHectareas;
     }
