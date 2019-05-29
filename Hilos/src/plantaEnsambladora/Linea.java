@@ -19,8 +19,12 @@ public class Linea extends Thread {
 	private Image imagen;
 	private Vector<Robot[]> robots;
 	private static Integer contAutos = 0;
+	private boolean contAutosOcupado;
+	private Semaforo semaforo;
 	public Linea(Vector<Robot[]> robots, Integer contAutos) {
 		this.robots = robots;
+		contAutosOcupado = false;
+		semaforo = new Semaforo(1);
 //		this.contAutos = contAutos;
 		crearLinea();
 				
@@ -63,10 +67,11 @@ public class Linea extends Thread {
 //				return;
 			auto.setBounds(-10, 50, 50, 40);
 			System.out.println(contAutos);
+			
 			for(int i=0;i<posEstaciones.length;i++) {
 				if(contAutos > 15)
 					return;
-				//llegó a posicion final
+				//llegó a estación final
 				if(i == posEstaciones.length-1) {
 					avanzaAuto(posEstaciones[i]);
 					auto.setIcon(Rutinas.changeSize(ruta+"car1.png", 50, 40));
@@ -93,7 +98,13 @@ public class Linea extends Thread {
 				robotAux.setTrabajando(false);
 				robotAux.semaforo.Libera();
 			}
-			contAutos++;
+			if(!contAutosOcupado) {
+				contAutosOcupado = true;
+				semaforo.Espera();
+				contAutos++;
+				contAutosOcupado = false;
+				semaforo.Libera();
+			}
 			
 		}
 		
