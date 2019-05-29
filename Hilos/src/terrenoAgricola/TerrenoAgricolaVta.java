@@ -37,7 +37,7 @@ public class TerrenoAgricolaVta extends JFrame {
     private void iniciaMenu() {
         panelMenu = new JPanel();
         panelMenu.setLayout(null);
-        JLabel lblMenu = new JLabel("Men�");
+        JLabel lblMenu = new JLabel("Menú");
         JLabel separador = new JLabel();
         btnRepartir = new JButton("Repartir");
 
