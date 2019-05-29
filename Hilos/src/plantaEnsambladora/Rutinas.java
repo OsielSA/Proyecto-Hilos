@@ -46,17 +46,17 @@ public class Rutinas {
         return new Random().nextInt(LimS - LimI + 1) + LimI;
     }
 
-    static public String PonBlancos(String Texto, int TamaÃ±o) {
-        while (Texto.length() < TamaÃ±o) {
+    static public String PonBlancos(String Texto, int Tamaño) {
+        while (Texto.length() < Tamaño) {
             Texto += " ";
         }
         return Texto;
     }
 
-    static public String PonCeros(int Numero, int TamaÃ±o) {
+    static public String PonCeros(int Numero, int Tamaño) {
         String Texto = Numero + "";
 
-        while (Texto.length() < TamaÃ±o) {
+        while (Texto.length() < Tamaño) {
             Texto = "0" + Texto;
         }
         return Texto;

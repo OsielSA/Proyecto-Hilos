@@ -73,7 +73,7 @@ public class TerrenoAgricolaVta extends JFrame {
         rdBtnHer2.setEnabled(false);
         rdBtnHer3.setEnabled(false);
         rdBtnTodos.setEnabled(false);
-        a√±adeInfo();
+        aÒadeInfo();
 
         panelMenu.setBounds(1080, 100, 260, 450);
         panelMenu.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -81,7 +81,7 @@ public class TerrenoAgricolaVta extends JFrame {
         add(panelMenu);
     }
 
-    private void a√±adeInfo() {
+    private void aÒadeInfo() {
         JLabel lblInfo = new JLabel("Informaci√≥n");
         JLabel separador = new JLabel();
         JLabel separador2 = new JLabel();

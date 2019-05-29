@@ -71,7 +71,7 @@ public class plantaEnsambladoraVta extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    private void aÃ±adirLineas() {
+    private void añadirLineas() {
         lineas = new Linea[numLineas];
 
         for (int i = 0; i < lineas.length; i++) {
@@ -83,15 +83,15 @@ public class plantaEnsambladoraVta extends JFrame {
     }
 
     public void iniciarProduccion() {
-        aÃ±adirRobots();
-        aÃ±adirLineas();
+        añadirRobots();
+        añadirLineas();
         setVisible(true);
         for (int i = 0; i < lineas.length; i++) {
             lineas[i].start();
         }
     }
 
-    private void aÃ±adirRobots() {
+    private void añadirRobots() {
         robotPorEstaciones = new Vector<Robot[]>();
         int numRobots[] = {5, 4, 3, 3, numLineas, numLineas};
 
