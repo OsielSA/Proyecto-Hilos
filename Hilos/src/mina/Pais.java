@@ -32,14 +32,11 @@ public class Pais extends Thread {
         String solicitud;
         Mina mina = v.getMina();
         while (true) {
+        	
             tipo = Rutinas.nextInt(1, 3);
 //			cantidad = Rutinas.nextInt(1, 3);
             cantidad = Rutinas.nextInt(100, 200);
             if (continente == 1) {
-                if (!mina.hayDisponibles(continente)) {
-                    v.btnConsulta.setEnabled(true);
-                    return;
-                }
                 if (mina.isMinandoEu()) {
                     continue;
                 }
@@ -56,34 +53,46 @@ public class Pais extends Thread {
                     sleep(1000);
                 } catch (Exception e) {
                 }
+                
+                v.lblPaisEuropa.setIcon(paisDefault);
+                if (!mina.hayDisponibles(continente)) {
+                    v.btnConsulta.setEnabled(true);
+                    return;
+                }
                 mina.setMinandoEu(false);
                 mina.semaforoEuropa.Libera();
-                v.lblPaisEuropa.setIcon(paisDefault);
-                continue;
+                
+//                continue;
             }
+            if (continente == 2) {
+            	
+            	if (mina.isMinandoAs()) {
+            		continue;
+            	}
 
-            if (!mina.hayDisponibles(continente)) {
-                return;
-            }
-            if (mina.isMinandoAs()) {
-                continue;
-            }
+            	mina.setMinandoAs(true);
+            	mina.semaforoAsia.Espera();
+            	v.lblPaisAsia.setIcon(paisImagen);
+            	//Minar
+            	solicitud = "<html><center>Tipo: " + tipo + "<p>Cantidad: " + cantidad + "</center></html>";
+            	v.lblSolicitudAs.setText(solicitud);
+            	minerales[tipo - 1] += mina.solicitarMinerales(continente, tipo, cantidad);
+            	v.actualizar(continente);
+            	try {
+            		sleep(1000);
+            	} catch (Exception e) {
+            	}
+            	
+            	v.lblPaisAsia.setIcon(paisDefault);
+            	if (!mina.hayDisponibles(continente)) {
+            		return;
+            	}
+            	mina.setMinandoAs(false);
+            	mina.semaforoAsia.Libera();
+            	
 
-            mina.setMinandoAs(true);
-            mina.semaforoAsia.Espera();
-            v.lblPaisAsia.setIcon(paisImagen);
-            //Minar
-            solicitud = "<html><center>Tipo: " + tipo + "<p>Cantidad: " + cantidad + "</center></html>";
-            v.lblSolicitudAs.setText(solicitud);
-            minerales[tipo - 1] += mina.solicitarMinerales(continente, tipo, cantidad);
-            v.actualizar(continente);
-            try {
-                sleep(1000);
-            } catch (Exception e) {
             }
-            mina.setMinandoAs(false);
-            mina.semaforoAsia.Libera();
-            v.lblPaisAsia.setIcon(paisDefault);
+           
         }
     }
 
@@ -95,14 +104,15 @@ public class Pais extends Thread {
         }
         paisImagen = Rutinas.changeSize(ruta + "asiaP" + id + ".png", 300, 200);
         paisDefault = Rutinas.changeSize(ruta + "asiaP" + 0 + ".png", 300, 200);
+        
     }
 
     public Vector<String> getVectorInfo() {
         if (continente == 1) {
-            info.add("Europa" + id);
+            info.add("Europa " + id);
         }
         if (continente == 2) {
-            info.add("Asia" + id);
+            info.add("Asia " + id);
         }
         info.add("" + minerales[0]);
         info.add("" + minerales[1]);

@@ -62,14 +62,12 @@ public class Mina {
 
     public boolean hayDisponibles(int continente) {
         if (continente == 1) {
-            if (mineralesEuropa[0] > 0 || mineralesEuropa[1] > 0 || mineralesEuropa[2] > 0) {
+            if (mineralesEuropa[0] > 0 || mineralesEuropa[1] > 0 || mineralesEuropa[2] > 0) 
                 return true;
-            }
             return false;
         }
-        if (mineralesAsia[0] > 0 || mineralesAsia[1] > 0 || mineralesAsia[2] > 0) {
+        if (mineralesAsia[0] > 0 || mineralesAsia[1] > 0 || mineralesAsia[2] > 0) 
             return true;
-        }
         return false;
     }
 

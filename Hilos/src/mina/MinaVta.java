@@ -55,7 +55,7 @@ public class MinaVta extends JFrame {
     }
 
     private void createInterfaceConsulta() {
-        frameConsulta = new JFrame("InformaciÃ³n");
+        frameConsulta = new JFrame("Información");
         frameConsulta.setSize(400, 500);
         frameConsulta.setResizable(false);
         frameConsulta.setLocationRelativeTo(null);
@@ -65,7 +65,7 @@ public class MinaVta extends JFrame {
     public void crearTabla(Vector<Vector<String>> infoPaises) {
         // Titulos
         Vector<String> titulos = new Vector<String>();
-        titulos.add("PaÃ­s");
+        titulos.add("País");
         titulos.add("Regular");
         titulos.add("Buena");
         titulos.add("Excelente");
