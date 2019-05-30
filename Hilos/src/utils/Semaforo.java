@@ -1,4 +1,4 @@
-package Filosofos;
+package utils;
 
 public class Semaforo {
 

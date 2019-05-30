@@ -1,7 +1,7 @@
 package plantaEnsambladora;
 
 import javax.swing.ImageIcon;
-
+import utils.*;
 public class Robot {
 
     private final String ruta = ".\\src\\plantaEnsambladora\\images\\";

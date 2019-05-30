@@ -1,7 +1,7 @@
 package mina;
 
 import java.util.Vector;
-
+import utils.*;
 public class Mina {
 
     public int[] mineralesEuropa;

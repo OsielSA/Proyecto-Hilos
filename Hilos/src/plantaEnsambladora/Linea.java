@@ -6,9 +6,7 @@ import java.awt.Image;
 import java.util.Vector;
 
 import javax.swing.*;
-
-import com.sun.javafx.geom.Rectangle;
-
+import utils.*;
 public class Linea extends Thread {
 
     private final String ruta = ".\\src\\plantaEnsambladora\\images\\";

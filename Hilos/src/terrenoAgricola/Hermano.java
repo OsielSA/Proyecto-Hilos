@@ -1,5 +1,5 @@
 package terrenoAgricola;
-
+import utils.*;
 public class Hermano extends Thread {
 
     private Hectarea hectareas[];

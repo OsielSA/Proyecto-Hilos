@@ -3,7 +3,7 @@ package aeropuerto;
 import java.awt.Color;
 
 import javax.swing.*;
-
+import utils.*;
 public class AeropuertoVta extends JFrame {
 
     private final String ruta = ".\\src\\aeropuerto\\images\\";

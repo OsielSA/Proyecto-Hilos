@@ -2,7 +2,7 @@ package Filosofos;
 
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
-
+import utils.*;
 public class Filosofo extends Thread {
 
     private int id;

@@ -5,7 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 
 import javax.swing.*;
-
+import utils.*;
 public class TerrenoAgricolaVta extends JFrame {
 
     private JPanel panelTerreno;

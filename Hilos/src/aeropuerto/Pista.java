@@ -1,5 +1,5 @@
 package aeropuerto;
-
+import utils.*;
 public class Pista {
 
     private boolean disponible;

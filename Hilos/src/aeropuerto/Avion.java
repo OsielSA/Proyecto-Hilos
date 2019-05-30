@@ -2,6 +2,7 @@ package aeropuerto;
 
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import utils.*;
 
 public class Avion extends Thread {
 

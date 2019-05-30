@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.Vector;
 
 import javax.swing.*;
-
+import utils.*;
 public class MinaVta extends JFrame {
 
     private final String ruta = ".\\src\\mina\\images\\";

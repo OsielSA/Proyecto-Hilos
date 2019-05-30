@@ -3,7 +3,7 @@ package Filosofos;
 import java.awt.Color;
 
 import javax.swing.*;
-
+import utils.*;
 public class FilosofosSimulacion extends JFrame {
 
     private JLabel mesa;

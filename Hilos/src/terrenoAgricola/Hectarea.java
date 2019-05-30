@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-
+import utils.*;
 public class Hectarea extends JLabel {
 
     private final Color malaC = new Color(237, 96, 0);

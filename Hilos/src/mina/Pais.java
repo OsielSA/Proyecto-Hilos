@@ -3,7 +3,7 @@ package mina;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-
+import utils.*;
 public class Pais extends Thread {
 
     private final String ruta = ".\\src\\mina\\images\\";
