@@ -8,21 +8,24 @@ import utils.*;
 public class MinaVta extends JFrame {
 
     private final String ruta = ".\\src\\mina\\images\\";
-
+    public final ImageIcon imgDefaultEu = Rutinas.changeSize(ruta + "europaP0.png", 180, 130);
+    public final ImageIcon imgDefaultAs = Rutinas.changeSize(ruta + "asiaP0.png", 250, 170);
     public JFrame frameConsulta;
     private JTable tableInfoPaises;
-    private JLabel lblInfoRegularEu;
-    private JLabel lblInfoBuenaEu;
-    private JLabel lblInfoExelenteEu;
-    private JLabel lblInfoRegularAs;
-    private JLabel lblInfoBuenaAs;
-    private JLabel lblInfoExelenteAs;
+    //info
+    private JLabel lblInfoEuropa[];
+    private JLabel lblInfoAsia[];
     public JLabel lblSolicitudEu;
     public JLabel lblSolicitudAs;
-
-    public JLabel lblPaisEuropa;
-    public JLabel lblPaisAsia;
-
+    //Titulos
+    private JLabel lblTituloTipoR;
+    private JLabel lblTituloTipoB;
+    private JLabel lblTituloTipoE;
+    //Paises
+    public JLabel lblPaisEuropa[];
+    public JLabel lblPaisAsia[];
+    
+    public JButton btnIniciar;
     public JButton btnConsulta;
 
     private Mina mina;
@@ -38,7 +41,7 @@ public class MinaVta extends JFrame {
     }
 
     private void createInterface() {
-        setSize(900, 600);
+        setSize(1300, 600);
         setResizable(false);
         setLocationRelativeTo(null);
         setLayout(null);
@@ -47,7 +50,6 @@ public class MinaVta extends JFrame {
 
         cargarInfoMina();
         cargarPaises();
-        iniciar();
 //		----------------------------
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
@@ -69,67 +71,109 @@ public class MinaVta extends JFrame {
         titulos.add("Regular");
         titulos.add("Buena");
         titulos.add("Excelente");
-        infoPaises.add(titulos);
         tableInfoPaises = new JTable(infoPaises, titulos);
 
         frameConsulta.add(new JScrollPane(tableInfoPaises));
     }
 
     private void cargarInfoMina() {
+    	lblInfoEuropa = new JLabel[3];
+    	lblInfoAsia = new JLabel[3];
+    	
         //info Regular
-        lblInfoRegularEu = new JLabel("Cantidad Europa: " + mina.mineralesEuropa[0]);
-        lblInfoRegularEu.setBounds(330, 120, 130, 30);
-        add(lblInfoRegularEu);
+    	lblInfoEuropa[0] = new JLabel("Cantidad Europa: " + mina.mineralesEuropa[0]);
+    	lblInfoEuropa[0].setBounds(330, 120, 130, 30);
+        add(lblInfoEuropa[0]);
 
-        lblInfoRegularAs = new JLabel("Cantidad Asia: " + mina.mineralesAsia[0]);
-        lblInfoRegularAs.setBounds(330, 140, 120, 30);
-        add(lblInfoRegularAs);
+        lblInfoAsia[0] = new JLabel("Cantidad Asia: " + mina.mineralesAsia[0]);
+        lblInfoAsia[0].setBounds(330, 140, 120, 30);
+        add(lblInfoAsia[0]);
 
         //info Buena
-        lblInfoBuenaEu = new JLabel("Cantidad Europa: " + mina.mineralesEuropa[1]);
-        lblInfoBuenaEu.setBounds(330, 240, 130, 30);
-        add(lblInfoBuenaEu);
+        lblInfoEuropa[1] = new JLabel("Cantidad Europa: " + mina.mineralesEuropa[1]);
+        lblInfoEuropa[1].setBounds(330, 240, 130, 30);
+        add(lblInfoEuropa[1]);
 
-        lblInfoBuenaAs = new JLabel("Cantidad Asia: " + mina.mineralesAsia[1]);
-        lblInfoBuenaAs.setBounds(330, 260, 120, 30);
-        add(lblInfoBuenaAs);
+        lblInfoAsia[1] = new JLabel("Cantidad Asia: " + mina.mineralesAsia[1]);
+        lblInfoAsia[1].setBounds(330, 260, 120, 30);
+        add(lblInfoAsia[1]);
 
         //info Exelente
-        lblInfoExelenteEu = new JLabel("Cantidad Europa: " + mina.mineralesEuropa[2]);
-        lblInfoExelenteEu.setBounds(330, 360, 130, 30);
-        add(lblInfoExelenteEu);
+        lblInfoEuropa[2] = new JLabel("Cantidad Europa: " + mina.mineralesEuropa[2]);
+        lblInfoEuropa[2].setBounds(330, 360, 130, 30);
+        add(lblInfoEuropa[2]);
 
-        lblInfoExelenteAs = new JLabel("Cantidad Asia: " + mina.mineralesAsia[2]);
-        lblInfoExelenteAs.setBounds(330, 380, 120, 30);
-        add(lblInfoExelenteAs);
+        lblInfoAsia[2] = new JLabel("Cantidad Asia: " + mina.mineralesAsia[2]);
+        lblInfoAsia[2].setBounds(330, 380, 120, 30);
+        add(lblInfoAsia[2]);
 
         //Mina
         JLabel infoMina = new JLabel();
         infoMina.setIcon(Rutinas.changeSize(ruta + "infoMina.png", 500, 350));
         infoMina.setBounds(10, 80, 500, 350);
         add(infoMina);
-
+        
+        //Boton Iniciar
+        btnIniciar = new JButton("Iniciar");
+        btnIniciar.setBounds(780, 530, 90, 20);
+        add(btnIniciar);
         //Boton Consulta
         btnConsulta = new JButton("Consulta");
-        btnConsulta.setBounds(780, 530, 90, 20);
+        btnConsulta.setBounds(980, 530, 90, 20);
         btnConsulta.setEnabled(false);
         add(btnConsulta);
+        
+        //Titulos
+        lblTituloTipoR = new JLabel("Regular");
+        lblTituloTipoR.setForeground(new Color(101, 101, 101));
+        lblTituloTipoR.setBounds(630, 30, 50, 30);
+        add(lblTituloTipoR);
+        lblTituloTipoB = new JLabel("Buena");
+        lblTituloTipoB.setForeground(new Color(101, 101, 101));
+        lblTituloTipoB.setBounds(890, 30, 50, 30);
+        add(lblTituloTipoB);
+        lblTituloTipoE = new JLabel("Excelente");
+        lblTituloTipoE.setForeground(new Color(101, 101, 101));
+        lblTituloTipoE.setBounds(1150, 30, 65, 30);
+        add(lblTituloTipoE);
     }
 
     private void cargarPaises() {
-        lblPaisEuropa = new JLabel();
-        lblPaisEuropa.setIcon(Rutinas.changeSize(ruta + "europaP0.png", 200, 150));
-        lblPaisEuropa.setBounds(600, 30, 200, 150);
-        add(lblPaisEuropa);
+    	//Imagenes de Europa
+        lblPaisEuropa = new JLabel[3];
+        lblPaisEuropa[0] = new JLabel();
+        lblPaisEuropa[0].setIcon(imgDefaultEu);
+        lblPaisEuropa[0].setBounds(570, 80, 180, 130);
+        add(lblPaisEuropa[0]);
+        lblPaisEuropa[1] = new JLabel();
+        lblPaisEuropa[1].setIcon(imgDefaultEu);
+        lblPaisEuropa[1].setBounds(820, 80, 180, 130);
+        add(lblPaisEuropa[1]);
+        lblPaisEuropa[2] = new JLabel();
+        lblPaisEuropa[2].setIcon(imgDefaultEu);
+        lblPaisEuropa[2].setBounds(1070, 80, 180, 130);
+        add(lblPaisEuropa[2]);
+        //Labels de solicitud de Europa
         lblSolicitudEu = new JLabel();
         lblSolicitudEu.setForeground(new Color(101, 101, 101));
         lblSolicitudEu.setBounds(700, 180, 100, 50);
         add(lblSolicitudEu);
-
-        lblPaisAsia = new JLabel();
-        lblPaisAsia.setIcon(Rutinas.changeSize(ruta + "asiaP0.png", 300, 200));
-        lblPaisAsia.setBounds(600, 250, 300, 200);
-        add(lblPaisAsia);
+        
+        //Imagenes de Asia
+        lblPaisAsia = new JLabel[3];
+        lblPaisAsia[0] = new JLabel();
+        lblPaisAsia[0].setIcon(imgDefaultAs);
+        lblPaisAsia[0].setBounds(530, 300, 250, 170);
+        add(lblPaisAsia[0]);
+        lblPaisAsia[1] = new JLabel();
+        lblPaisAsia[1].setIcon(imgDefaultAs);
+        lblPaisAsia[1].setBounds(780, 300, 250, 170);
+        add(lblPaisAsia[1]);
+        lblPaisAsia[2] = new JLabel();
+        lblPaisAsia[2].setIcon(imgDefaultAs);
+        lblPaisAsia[2].setBounds(1030, 300, 250, 170);
+        add(lblPaisAsia[2]);
+        //Labels de solicitud de Asia
         lblSolicitudAs = new JLabel();
         lblSolicitudAs.setForeground(new Color(101, 101, 101));
         lblSolicitudAs.setBounds(700, 450, 100, 50);
@@ -146,7 +190,7 @@ public class MinaVta extends JFrame {
         }
     }
 
-    private void iniciar() {
+    public void iniciar() {
         for (int i = 0; i < paisesEuropa.length; i++) {
             paisesEuropa[i].start();
         }
@@ -155,22 +199,13 @@ public class MinaVta extends JFrame {
         }
     }
 
-    public void actualizar(int continente) {
+    public void actualizar(int continente, int tipo) {
         if (continente == 1) {
-            //info Regular
-            lblInfoRegularEu.setText("Cantidad Europa: " + mina.mineralesEuropa[0]);
-            //info Buena
-            lblInfoBuenaEu.setText("Cantidad Europa: " + mina.mineralesEuropa[1]);
-            //info Exelente
-            lblInfoExelenteEu.setText("Cantidad Europa: " + mina.mineralesEuropa[2]);
+            lblInfoEuropa[tipo].setText("Cantidad Europa: " + mina.mineralesEuropa[tipo]);
             return;
         }
         //info Regular
-        lblInfoRegularAs.setText("Cantidad Asia: " + mina.mineralesAsia[0]);
-        //info Buena
-        lblInfoBuenaAs.setText("Cantidad Asia: " + mina.mineralesAsia[1]);
-        //info Exelente
-        lblInfoExelenteAs.setText("Cantidad Asia: " + mina.mineralesAsia[2]);
+        lblInfoAsia[tipo].setText("Cantidad Asia: " + mina.mineralesAsia[tipo]);
     }
 
     public Mina getMina() {
