@@ -123,7 +123,7 @@ public class Mina {
                 return true;
             return false;
         }
-        if (mineralesEuropa[tipo] > 0) 
+        if (mineralesAsia[tipo] > 0) 
             return true;
         return false;
     }

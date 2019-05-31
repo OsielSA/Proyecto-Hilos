@@ -15,8 +15,8 @@ public class MinaVta extends JFrame {
     //info
     private JLabel lblInfoEuropa[];
     private JLabel lblInfoAsia[];
-    public JLabel lblSolicitudEu;
-    public JLabel lblSolicitudAs;
+    public JLabel lblSolicitudEu[];
+    public JLabel lblSolicitudAs[];
     //Titulos
     private JLabel lblTituloTipoR;
     private JLabel lblTituloTipoB;
@@ -154,10 +154,19 @@ public class MinaVta extends JFrame {
         lblPaisEuropa[2].setBounds(1070, 80, 180, 130);
         add(lblPaisEuropa[2]);
         //Labels de solicitud de Europa
-        lblSolicitudEu = new JLabel();
-        lblSolicitudEu.setForeground(new Color(101, 101, 101));
-        lblSolicitudEu.setBounds(700, 180, 100, 50);
-        add(lblSolicitudEu);
+        lblSolicitudEu = new JLabel[3];
+        lblSolicitudEu[0] = new JLabel();
+        lblSolicitudEu[0].setForeground(new Color(101, 101, 101));
+        lblSolicitudEu[0].setBounds(630, 200, 100, 50);
+        add(lblSolicitudEu[0]);
+        lblSolicitudEu[1] = new JLabel();
+        lblSolicitudEu[1].setForeground(new Color(101, 101, 101));
+        lblSolicitudEu[1].setBounds(890, 200, 100, 50);
+        add(lblSolicitudEu[1]);
+        lblSolicitudEu[2] = new JLabel();
+        lblSolicitudEu[2].setForeground(new Color(101, 101, 101));
+        lblSolicitudEu[2].setBounds(1150, 200, 100, 50);
+        add(lblSolicitudEu[2]);
         
         //Imagenes de Asia
         lblPaisAsia = new JLabel[3];
@@ -174,10 +183,19 @@ public class MinaVta extends JFrame {
         lblPaisAsia[2].setBounds(1030, 300, 250, 170);
         add(lblPaisAsia[2]);
         //Labels de solicitud de Asia
-        lblSolicitudAs = new JLabel();
-        lblSolicitudAs.setForeground(new Color(101, 101, 101));
-        lblSolicitudAs.setBounds(700, 450, 100, 50);
-        add(lblSolicitudAs);
+        lblSolicitudAs = new JLabel[3];
+        lblSolicitudAs[0] = new JLabel();
+        lblSolicitudAs[0].setForeground(new Color(101, 101, 101));
+        lblSolicitudAs[0].setBounds(630, 460, 100, 50);
+        add(lblSolicitudAs[0]);
+        lblSolicitudAs[1] = new JLabel();
+        lblSolicitudAs[1].setForeground(new Color(101, 101, 101));
+        lblSolicitudAs[1].setBounds(890, 460, 100, 50);
+        add(lblSolicitudAs[1]);
+        lblSolicitudAs[2] = new JLabel();
+        lblSolicitudAs[2].setForeground(new Color(101, 101, 101));
+        lblSolicitudAs[2].setBounds(1150, 460, 100, 50);
+        add(lblSolicitudAs[2]);
 
         //Inicializar Paises
         paisesEuropa = new Pais[Rutinas.nextInt(10, 30)];
