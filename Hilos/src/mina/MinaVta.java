@@ -1,6 +1,7 @@
 package mina;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -68,6 +69,7 @@ public class MinaVta extends JFrame {
         // Titulos
         Vector<String> titulos = new Vector<String>();
         titulos.add("País");
+        titulos.add("Peticiones");
         titulos.add("Regular");
         titulos.add("Buena");
         titulos.add("Excelente");
@@ -126,15 +128,18 @@ public class MinaVta extends JFrame {
         //Titulos
         lblTituloTipoR = new JLabel("Regular");
         lblTituloTipoR.setForeground(new Color(101, 101, 101));
-        lblTituloTipoR.setBounds(630, 30, 50, 30);
+        lblTituloTipoR.setBounds(630, 30, 80, 30);
+        lblTituloTipoR.setFont(new Font("Arial", Font.BOLD, 14));
         add(lblTituloTipoR);
         lblTituloTipoB = new JLabel("Buena");
         lblTituloTipoB.setForeground(new Color(101, 101, 101));
-        lblTituloTipoB.setBounds(890, 30, 50, 30);
+        lblTituloTipoB.setBounds(890, 30, 80, 30);
+        lblTituloTipoB.setFont(new Font("Arial", Font.BOLD, 14));
         add(lblTituloTipoB);
         lblTituloTipoE = new JLabel("Excelente");
         lblTituloTipoE.setForeground(new Color(101, 101, 101));
-        lblTituloTipoE.setBounds(1150, 30, 65, 30);
+        lblTituloTipoE.setBounds(1150, 30, 95, 30);
+        lblTituloTipoE.setFont(new Font("Arial", Font.BOLD, 14));
         add(lblTituloTipoE);
     }
 

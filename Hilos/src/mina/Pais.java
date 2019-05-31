@@ -13,6 +13,7 @@ public class Pais extends Thread {
     private ImageIcon paisImagen;
     private ImageIcon paisDefault;
     private MinaVta v;
+    private int peticiones;
     public int[] minerales;
     private Vector<String> info;
 
@@ -20,6 +21,7 @@ public class Pais extends Thread {
         this.continente = continente;
         this.id = id;
         this.v = vista;
+        peticiones=0;
         minerales = new int[3];
         info = new Vector<String>();
         asignaIcono();
@@ -33,7 +35,8 @@ public class Pais extends Thread {
         while (true) {
         	
             tipo = Rutinas.nextInt(0, 2);
-            cantidad = Rutinas.nextInt(50, 100);
+            cantidad = Rutinas.nextInt(1, 3);
+//            cantidad = Rutinas.nextInt(50, 100);
             //Europa
             if (continente == 1) {
                 if (mina.isMinandoEu(tipo)) {
@@ -44,13 +47,13 @@ public class Pais extends Thread {
                 mina.setMinandoEu(true, tipo);
                 
                 if(!mina.hayDisponibles(continente)) {
-                	v.lblSolicitudEu[tipo].setText("");
+                	v.lblSolicitudEu[tipo].setText("Agotado");
                 	v.btnConsulta.setEnabled(true);
                 	return;
                 }
                 	
                 if(!mina.hayDisponibles(continente, tipo)) {
-                	v.lblSolicitudEu[tipo].setText("");
+                	v.lblSolicitudEu[tipo].setText("Agotado");
                 	continue;
                 }
                 v.lblPaisEuropa[tipo].setIcon(paisImagen);
@@ -64,7 +67,7 @@ public class Pais extends Thread {
                     sleep(1000);
                 } catch (Exception e) {
                 }
-                
+                peticiones++;
                 v.lblPaisEuropa[tipo].setIcon(paisDefault);
                 mina.setMinandoEu(false, tipo);
                 mina.getSemaforoEuropa(tipo).Libera();
@@ -82,11 +85,11 @@ public class Pais extends Thread {
                 mina.setMinandoAs(true, tipo);
                 
                 if(!mina.hayDisponibles(continente)) {
-                	v.lblSolicitudAs[tipo].setText("");
+                	v.lblSolicitudAs[tipo].setText("Agotado");
                 	return;
                 }
                 if(!mina.hayDisponibles(continente, tipo)) {
-                	v.lblSolicitudAs[tipo].setText("");
+                	v.lblSolicitudAs[tipo].setText("Agotado");
                 	continue;
                 }
                 v.lblPaisAsia[tipo].setIcon(paisImagen);
@@ -131,6 +134,7 @@ public class Pais extends Thread {
         if (continente == 2) {
             info.add("Asia " + id);
         }
+        info.add("" + peticiones);
         info.add("" + minerales[0]);
         info.add("" + minerales[1]);
         info.add("" + minerales[2]);
